@@ -2,7 +2,7 @@ from setuptools import setup
 setup(
     name='envr',
     packages=['envr'],
-    version='0.1.2',
+    version='0.1.3',
     description=('Manipulate and transform .env files ' +
                  'that work on Heroku and are POSIX-compliant shell scripts.'),
     install_requires=[
