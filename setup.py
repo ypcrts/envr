@@ -3,7 +3,7 @@ setup(
     name='envr',
     packages=['envr'],
     version='0.1.2',
-    description=('Manipulate and transform .env files' +
+    description=('Manipulate and transform .env files ' +
                  'that work on Heroku and are POSIX-compliant shell scripts.'),
     install_requires=[
         'six'

@@ -68,9 +68,8 @@ class EnvFile:
             yield k, v
 
     def save(self):
-
         with open(self.path, "w") as f:
-            f.write(self.data)
+            f.write(self.env())
 
     def dict(self):
         return OrderedDict(self)
