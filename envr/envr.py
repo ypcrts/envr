@@ -4,18 +4,26 @@ import json
 import re
 
 
-class EnvFile:
+class Envr:
 
     _line_format = r"^[ \t]*(?P<key>{:s})=" + \
-        r"(?P<value>['\"]?[^'\"\n]{{0,}}['\"]?)[ \t]*(?P<comment>#.*)?$"
+        r"(?P<value>(['\"][^'\"\n]{{0,}}['\"])|" + \
+        r"[^'\"\n\s]{{0,}})[ \t]*(?P<comment>#.*)?$"
     _key_format = r"[A-z0-9_]+"
     _parse_regex = re.compile(_line_format.format(_key_format))
     _quotemarks = r"'\""
 
-    def __init__(self, path):
-        self.path = path
-        with open(self.path, "r") as f:
-            self.lines = f.read().splitlines()
+    def __init__(self, path, stream=None):
+        self.path = None
+
+        if stream:
+            d = stream.read()
+        else:
+            self.path = path
+            with open(self.path, "r") as f:
+                d = f.read()
+
+        self.lines = d.splitlines()
 
     def __getitem__(self, key):
         r = self._line_regex(key)
@@ -67,9 +75,31 @@ class EnvFile:
 
             yield k, v
 
+    def __str__(self):
+        """
+        Retruns the state of the loaded, modified data in as close as possible
+        to the originally sourced format.
+        """
+        return str("\n".join(self.lines))
+
+    def _env_strict(self):
+        """
+        Returns a string that strictly contains envr syntax-compliant,
+        POSIX-compliant variable assignments.
+        """
+        res = []
+        d = self.dict()
+        for (k, v) in iteritems(d):
+            res += [self._var_format(k, v)]
+
+        return str("\n".join(res))
+
     def save(self):
+        if self.path is None:
+            raise IOError
+
         with open(self.path, "w") as f:
-            f.write(self.env())
+            f.write(str(self))
 
     def dict(self):
         return OrderedDict(self)
@@ -77,8 +107,11 @@ class EnvFile:
     def json(self):
         return json.dumps(self.dict(), indent=2)
 
-    def env(self):
-        return str("\n".join(self.lines))
+    def env(self, strict=False):
+        if strict:
+            return self._env_strict()
+        else:
+            return str(self)
 
     @classmethod
     def _replace_value_fn(cls, value):
