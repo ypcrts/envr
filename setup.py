@@ -4,14 +4,14 @@ setup(
     packages=['envr'],
     version='0.1.3',
     description=('Manipulate and transform .env files ' +
-                 'that work on Heroku and are POSIX-compliant shell scripts.'),
+                 'that are a subset of POSIX-compliant shell scripts.'),
     install_requires=[
         'six'
     ],
     author='ypcrts',
     author_email='ypcrts',
     url='https://github.com/ypcrts/envr',
-    keywords=['env', 'dotenv', 'heroku', 'environment'],
+    keywords=['env', 'dotenv', 'heroku', 'environment', 'python-environ'],
     license='MPL 2.0',
     classifiers=[
         'Development Status :: 5 - Production/Stable',

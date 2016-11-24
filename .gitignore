@@ -1,3 +1,5 @@
-MANIFEST
-dist
-build
+/MANIFEST
+/dist
+/build
+/envr
+/envr.egg-info
