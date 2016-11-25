@@ -43,6 +43,12 @@ state = str(e)
 e_as_strict_env = e.env(strict=True)
 ```
 
+```sh
+# reads standard input, transforms it with Envr.env(strict=True), and writes
+# the result to standard output
+cat script.sh | python -m envr
+```
+
 # `.env` envr syntax
 
 #  compatible with 
@@ -50,5 +56,5 @@ e_as_strict_env = e.env(strict=True)
 `.env` envr syntax is compatible with
 
 - honcho
-- django - environ
-- python - dotenv(except for a bug with single quotes)
+- django-environ
+- python-dotenv (except for a bug with single quotes)
