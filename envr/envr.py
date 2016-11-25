@@ -138,6 +138,9 @@ class Envr:
     def _unquote(cls, v):
         v.strip()
 
+        if len(v) < 2:
+            return v
+
         if v[-1] != v[0]:
             return v
 
