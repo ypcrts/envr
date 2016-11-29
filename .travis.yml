@@ -1,0 +1,15 @@
+language: python
+sudo: false
+python:
+  - 2.7
+  - 3.4
+  - 3.5
+  - pypy
+install:
+  - pip install .
+before_script: flake8
+script: coverage run --source=envr setup.py test 
+after_success:
+  - coverage report
+  - pip install --quiet python-coveralls
+  - coveralls
