@@ -1,7 +1,6 @@
 # envr
 
-Manipulate and transform .env files that are a subset of POSIX - compliant shell
-scripts
+Manipulate and transform .env files.
 
 # Use it
 
@@ -51,9 +50,22 @@ cat script.sh | python -m envr
 
 # `.env` envr syntax
 
+`.env` syntax is a subset of POSIX shell scripts.
+
+Each parseable line of the file contains a variable assignment of the form:
+```
+VARIABLE_NAME=VALUE COMMENT
+```
+
+`NAME` must match `[a-zA-Z0-9_]+`.
+
+`VALUE` must match `[^"']` if enclosed by one pair of any character in the set `["']`; otherwise it must match `[^\s"']`. 
+
+`COMMENT` may be omitted, and if present must begin with a `#` after the space separating it from `VALUE`.
+
 #  compatible with 
 
-`.env` envr syntax is compatible with
+`.env` envr syntax is compatible as a subset of `.env` files for
 
 - honcho
 - django-environ

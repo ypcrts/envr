@@ -26,5 +26,5 @@ setup(
         'Topic :: Utilities',
         'Environment :: Web Environment',
     ],
-    test_suite='envr.test.load'
+    test_suite='test.load'
 )
