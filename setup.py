@@ -25,5 +25,6 @@ setup(
         'Topic :: System :: Systems Administration',
         'Topic :: Utilities',
         'Environment :: Web Environment',
-    ]
+    ],
+    test_suite='test.load'
 )
