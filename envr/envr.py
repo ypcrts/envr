@@ -14,15 +14,17 @@ class Envr:
     _parse_regex = re.compile(_line_format.format(_key_format))
     _quotemarks = r"'\""
 
-    def __init__(self, path, stream=None):
+    def __init__(self, path=None, stream=None):
         self.path = None
 
         if stream:
             d = stream.read()
-        else:
+        elif path:
             self.path = path
             with open(self.path, "r") as f:
                 d = f.read()
+        else:
+            d = ""
 
         self.lines = d.splitlines()
 
