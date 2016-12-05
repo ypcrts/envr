@@ -70,3 +70,4 @@ VARIABLE_NAME=VALUE COMMENT
 - honcho
 - django-environ
 - python-dotenv (except for a bug with single quotes)
+- [docker-compose](https://docs.docker.com/compose/env-file/)
