@@ -1,0 +1,18 @@
+-   repo: git://github.com/pre-commit/pre-commit-hooks
+    sha: 52582865ab7ed8f41734253190844c854ddd9a9e
+    hooks:
+    -   id: trailing-whitespace
+    -   id: check-ast
+    -   id: check-json
+    -   id: check-merge-conflict
+    -   id: check-yaml
+    -   id: debug-statements
+    -   id: requirements-txt-fixer
+    -   id: check-added-large-files
+    -   id: end-of-file-fixer
+-   repo: git://github.com/FalconSocial/pre-commit-python-sorter
+    sha: 1.0.4
+    hooks:
+    -   id: python-import-sorter
+        args:
+        - --silent-overwrite

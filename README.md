@@ -59,11 +59,11 @@ VARIABLE_NAME=VALUE COMMENT
 
 `NAME` must match `[a-zA-Z0-9_]+`.
 
-`VALUE` must match `[^"']` if enclosed by one pair of any character in the set `["']`; otherwise it must match `[^\s"']`. 
+`VALUE` must match `[^"']` if enclosed by one pair of any character in the set `["']`; otherwise it must match `[^\s"']`.
 
 `COMMENT` may be omitted, and if present must begin with a `#` after the space separating it from `VALUE`.
 
-#  compatible with 
+#  compatible with
 
 `.env` envr syntax is compatible as a subset of `.env` files for
 

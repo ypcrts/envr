@@ -3,7 +3,7 @@ import sys
 import unittest
 from envr import Envr
 
-class 
+#class
 
 def load():
     suite = unittest.TestSuite()

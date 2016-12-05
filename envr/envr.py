@@ -1,7 +1,8 @@
-from six import iteritems
-from collections import OrderedDict
 import json
 import re
+from collections import OrderedDict
+
+from six import iteritems
 
 
 class Envr:
