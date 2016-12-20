@@ -40,6 +40,10 @@ state = str(e)
 # returns an envr syntax-compatible, POSIX-compliant shell script as a
 # string, containing only the variable assignments
 e_as_strict_env = e.env(strict=True)
+
+# turns off quoting of variable values
+e_unquoted = e.env(quoted=False)
+e_unquoted = e.env(strict=True, quoted=False)
 ```
 
 ```sh

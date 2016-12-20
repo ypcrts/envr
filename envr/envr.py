@@ -85,7 +85,7 @@ class Envr:
         """
         return str("\n".join(self.lines))
 
-    def _env_strict(self):
+    def _env_strict(self, **kwargs):
         """
         Returns a string that strictly contains envr syntax-compliant,
         POSIX-compliant variable assignments.
@@ -93,7 +93,7 @@ class Envr:
         res = []
         d = self.dict()
         for (k, v) in iteritems(d):
-            res += [self._var_format(k, v)]
+            res += [self._var_format(k, v, **kwargs)]
 
         return str("\n".join(res))
 
@@ -110,9 +110,9 @@ class Envr:
     def json(self):
         return json.dumps(self.dict(), indent=2)
 
-    def env(self, strict=False):
+    def env(self, strict=False, **kwargs):
         if strict:
-            return self._env_strict()
+            return self._env_strict(**kwargs)
         else:
             return str(self)
 
@@ -125,12 +125,17 @@ class Envr:
         return __f
 
     @classmethod
-    def _var_format(cls, key, value, comment=""):
-        value = cls._quotemarks[0] + value + cls._quotemarks[0]
+    def _var_format(cls, key, value, comment=None, quoted=True):
+        quotemark = cls._quotemarks[0] if quoted else None
+
+        if quotemark is not None:
+            value = quotemark + value + quotemark
+
         if comment is None:
             comment = ""
         elif comment != "":
             comment = " " + comment
+
         return "{:s}={:s}{:s}".format(str(key), str(value), comment)
 
     @classmethod
