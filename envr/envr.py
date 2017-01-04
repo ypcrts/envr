@@ -80,7 +80,7 @@ class Envr:
 
     def __str__(self):
         """
-        Retruns the state of the loaded, modified data in as close as possible
+        Returns the state of the loaded, modified data in as close as possible
         to the originally sourced format.
         """
         return str("\n".join(self.lines))
