@@ -56,6 +56,9 @@ class Envr:
         return value
 
     def __setitem__(self, key, value):
+        key = str(key)
+        value = str(value)
+        
         for q in self._quotemarks:
             if q in value:
                 raise ValueError
