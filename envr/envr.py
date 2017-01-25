@@ -28,7 +28,12 @@ class Envr:
 
         self.lines = d.splitlines()
 
-    def __getitem__(self, key):
+    def _match_by_key(self, key):
+        """_match_by_key
+        Raises a KeyError if key not found.
+
+        :param key:
+        """
         r = self._line_regex(key)
         for line in self.lines:
             match = r.match(line)
@@ -36,7 +41,17 @@ class Envr:
                 break
         else:
             raise KeyError(key)
+        return match
 
+    def __contains__(self, key):
+        try:
+            self._match_by_key(key)
+            return True
+        except KeyError:
+            return False
+
+    def __getitem__(self, key):
+        match = self._match_by_key(key)
         value = self._unquote(match.group('value'))
         return value
 
