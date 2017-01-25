@@ -2,7 +2,7 @@ from setuptools import setup
 setup(
     name='envr',
     packages=['envr'],
-    version='0.3.3',
+    version='0.3.4',
     description=('Manipulate and transform .env files ' +
                  'that are a subset of POSIX-compliant shell scripts.'),
     install_requires=[
