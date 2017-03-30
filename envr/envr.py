@@ -170,9 +170,7 @@ class Envr:
         if v[-1] != v[0]:
             return v
 
-        for q in cls._quotemarks:
-            if v[0] == q:
-                v = v[1:-1]
-                break
+        if v[0] in cls._quotemarks:
+            v = v[1:-1]
 
         return v
