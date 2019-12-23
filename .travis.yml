@@ -4,10 +4,13 @@ python:
   - 2.7
   - 3.4
   - 3.5
+  - 3.7
   - pypy
 install:
   - pip install .
-before_script: flake8
+before_script:
+  - pip install --quiet coverage six python-coveralls
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.7 ]]; then pip install black && black --check .; fi
 script: coverage run --source=envr setup.py test
 after_success:
   - coverage report

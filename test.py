@@ -3,13 +3,12 @@ import sys
 import unittest
 from envr import Envr
 
-#class
+# class
+
 
 def load():
     suite = unittest.TestSuite()
-    cases = [
-
-    ]
+    cases = []
 
     for c in cases:
         suite.addtest(unittest.makeSuite(c))

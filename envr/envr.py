@@ -7,9 +7,11 @@ from six import iteritems
 
 class Envr:
 
-    _line_format = r"^[ \t]*(?P<key>{:s})=" + \
-        r"(?P<value>(['\"][^'\"\n]{{0,}}['\"])|" + \
-        r"[^'\"\n\s]{{0,}})[ \t]*(?P<comment>#.*)?$"
+    _line_format = (
+        r"^[ \t]*(?P<key>{:s})="
+        + r"(?P<value>(['\"][^'\"\n]{{0,}}['\"])|"
+        + r"[^'\"\n\s]{{0,}})[ \t]*(?P<comment>#.*)?$"
+    )
     _key_format = r"[A-z0-9_]+"
     _parse_regex = re.compile(_line_format.format(_key_format))
     _quotemarks = r"'\""
@@ -52,13 +54,13 @@ class Envr:
 
     def __getitem__(self, key):
         match = self._match_by_key(key)
-        value = self._unquote(match.group('value'))
+        value = self._unquote(match.group("value"))
         return value
 
     def __setitem__(self, key, value):
         key = str(key)
         value = str(value)
-        
+
         for q in self._quotemarks:
             if q in value:
                 raise ValueError
@@ -90,7 +92,7 @@ class Envr:
             if match is None:
                 continue
 
-            k, v = match.group('key'),  match.group('value')
+            k, v = match.group("key"), match.group("value")
 
             v = self._unquote(v)
 
@@ -137,9 +139,8 @@ class Envr:
     @classmethod
     def _replace_value_fn(cls, value):
         def __f(match):
-            return cls._var_format(match.group('key'),
-                                   value,
-                                   match.group('comment'))
+            return cls._var_format(match.group("key"), value, match.group("comment"))
+
         return __f
 
     @classmethod
